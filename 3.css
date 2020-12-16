@@ -1,0 +1,148 @@
+.menu-wrapper {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1; /* initially it will be under the --bg-color, this will make it on top */
+}
+.toggle { /* invisible toggle button over the hamburger lines*/
+    opacity: 0; /* hiding the checkbox */
+    cursor: pointer;
+    z-index: 5; /* invisible toggle button on top of hamburger*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+}
+.hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 60px;
+    padding: 1rem;
+
+    /* to center the hamburger lines */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--accent-color);
+    z-index: 2;
+}
+/********************
+    Hamburger Lines
+********************/
+.hamburger > div { /* immediate div after hamburger */
+    /* middle line  */
+    position: relative; /* top and bottom lines will be positioned absolute to this */
+    width: 100%;
+    height: 3px;
+    background: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.3s ease; 
+}
+.hamburger > div::before { /* first line */
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 3px;
+    top: -10px;
+    background: black;
+}
+.hamburger > div::after { /* last line */
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 3px;
+    top: 10px;
+    background: black;
+}
+
+.toggle:checked + .hamburger > div { /* styling hamburger div when the invisible checkbox is checked*/
+    transform: rotate(135deg);
+}
+/* making the lines an X when checkbox is checked*/
+.toggle:checked + .hamburger > div::before, 
+.toggle:checked + .hamburger > div::after {
+    top: 0;
+    transform: rotate(90deg); 
+}  
+/* rotate the X on hover when checkbox is checked */
+.toggle:checked:hover + .hamburger > div {
+    transform: rotate(225deg);
+}
+
+/***********
+    Menu 
+************/
+.menu {
+    /* cover up the entire screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu > div { /* first div after .menu */
+    background: var(--overlay-color);
+    /* border-radius: 50%;
+    height: 200vw;
+    width: 200vw;
+    flex: none; */
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+.menu > div > div {
+    text-align: center;
+    max-width: 90vw;
+    max-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.menu > div > div > ul > li {
+    list-style: none;
+    font-size: 2em;
+    padding: 0.5em;
+
+}
+.menu > div > div > ul > li > a {
+    text-decoration: none;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+.menu > div > div > ul > li > a:hover {
+    color: white;
+}
+
+
+/* Show Menu */
+.toggle:checked ~ .menu {
+    visibility: visible;   
+}
+.toggle:checked ~ .menu > div {
+    transform: scale(1);
+    transition-duration: var(--menu-speed);
+}
+.toggle:checked ~ .menu > div > div {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}

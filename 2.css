@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Roboto');
+:root {
+    --bg-color: rgba(255,255,255,0.3); /* shade of white */
+    --overlay-color: rgba(0,0,0,0.8);
+    --menu-speed: 0.75s;
+    --accent-color:#17a2b8!important;
+    --icon-color: rgb(144, 233, 231);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Lato, sans-serif;
+    line-height: 1.4;
+}
+/************
+    HEADER
+*************/
+.container {
+    max-width: 960px;
+    margin: auto; /* centering */
+    /* overflow: hidden; */
+}
+.showcase {
+    background-color: var(--bg-color); 
+    color: black;
+    height: 100vh;
+    position: relative; /* overlay will be positioned absolute inside it */
+    padding: 1em;
+}
+.showcase::before { /* overlay (image behind the background) */
+    content: ''; 
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: url(pexels-photo-1181448.jpeg);
+}
+.showcase, .showcase-inner { /* to center */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container h1 {
+    font-size: 3.5rem;
+}
+.container p {
+    font-size: 1.2rem;
+}
+.btn {
+    margin-top: 1em;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+    border: 1px solid black;
+    transition: background 0.3s ease-in;
+    border-radius: 2px;   
+}
+.btn:hover {
+    background: rgba(0,0,0,0.8);
+    color: white;
+}
+
+/*********************
+    SECTION: SKILLS
+*********************/
+
+#skills {
+    padding: 2em;
+    background-color: rgb(240, 240, 240);
+    margin: 0 auto;
+}
+.icon-row {
+    padding: 1em;
+    font-size: 2rem;
+    width: 100%;
+    border: 1px solid var(--icon-color);
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+@media (max-width: 500px) {
+    .icon-row {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+.icon-row > p {
+    /* border: 1px solid gray; */
+    padding: 0.5em 0.8em;
+}
+/* Icon Colors */
+.icon-html5 {
+    color: #f16529; 
+}
+.icon-css3 {
+    color: #2965f1;
+}
+.icon-sass {
+    color: #c69;
+}
+.icon-bootstrap {
+    color: #602C50;
+}
+.icon-javascript {
+    color: #F0DB4F;
+}
+.icon-react {
+    color: #00d8ff;
+}
